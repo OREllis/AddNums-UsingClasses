@@ -27,16 +27,24 @@ namespace Add2NumsUsingClasses
                 //parse textboxes as int, pass them to calcSum in Calcs, assign returned int to int sum
                 int sum = doCalcs.calcSum(int.Parse(txtNo1.Text), int.Parse(txtNo2.Text), int.Parse(txtNo3.Text));
 
-                //pass sum to calcAvg in Calcs, convert returned val to string, set lblAvg text to coverted val
-                lblAvg.Text = doCalcs.calcAvg(sum).ToString("F2");
+                //pass sum to calcAvg in Calcs, assign returned val to avg
+                double avg = doCalcs.calcAvg(sum);
 
-                //convert sum to string, set lblSum text to converted sum
-                lblSum.Text = sum.ToString();
+                //pass sum & avg to method that sets labels to passed values
+                displayDetails(sum, avg);
             }
             catch {
                 //show error if invalid entry
                 MessageBox.Show("Err, enter whole numbers in the textboxes", "Err. Invalid Datatype");
             }
+        }
+
+        public void displayDetails(int sumTotal, double average) {
+            //set lblSum.Text to .ToString(); converted int sumTotal
+            lblSum.Text = sumTotal.ToString();
+
+            //set lblAvg to .ToString("F2"); converted double average
+            lblAvg.Text = average.ToString("F2");
         }
 
         private void btnClear_Click(object sender, EventArgs e)
